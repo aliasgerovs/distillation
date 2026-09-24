@@ -12,3 +12,14 @@ artifacts/
 *.pyo
 *.DS_Store
 scripts/student_attr_ablation_local.py
+
+# Replication: local-only files
+paper/
+replication/state/
+replication/logs/*
+!replication/logs/queue.log
+!replication/logs/jobs/
+replication/logs/jobs/*
+!replication/logs/jobs/*.check.txt
+replication/models/**/*.safetensors
+replication/models/**/model.safetensors.index.json

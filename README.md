@@ -1,3 +1,5 @@
+> **Replication fork.** This repository replicates *The Distillation Game* ([arXiv:2605.22737](https://arxiv.org/abs/2605.22737)) on top of the authors' code ([ysfalh/distillation-game](https://github.com/ysfalh/distillation-game), `main` @ `671704e`). Our changes, runs and results are described in [`replication/README.md`](replication/README.md) and [`replication/RESULTS.md`](replication/RESULTS.md). The authors' README follows.
+
 # The Distillation Game
 
 Code for the experiments in [*The Distillation Game: Adaptive Attacks & Efficient Defenses*](https://arxiv.org/abs/2605.22737) by Youssef Allouah*, Mahdi Haghifam*, Sanmi Koyejo, and Reza Shokri.

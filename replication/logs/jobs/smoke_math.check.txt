@@ -1,0 +1,10 @@
+run: outputs/replication/smoke/smoke_math_20260923_152459
+  -                            teacher_standard_train                   acc=0.6719 gen=109s  train
+  -                            teacher_standard_test                    acc=0.8438 gen=108s  test
+  -                            teacher_poe_gamma_0.75_train             acc=0.7500 gen=166s  train
+  -                            teacher_poe_gamma_0.75_test              acc=0.8125 gen=162s  test
+  teacher_standard             student_naive                            acc=0.0000  
+  teacher_standard             student_strategic_fd                     acc=0.0000  beta_s=0.5, mean_a=-0.0549, frac_mass_top20=0.1957
+  teacher_poe_gamma_0.75       student_naive                            acc=0.0000  
+  teacher_poe_gamma_0.75       student_strategic_fd                     acc=0.0000  beta_s=0.5, mean_a=-0.1129, frac_mass_top20=0.2027
+PASS

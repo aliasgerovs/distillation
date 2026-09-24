@@ -1,0 +1,10 @@
+run: outputs/replication/smoke/smoke_gsm8k_20260923_152459
+  -                            teacher_standard_train                   acc=0.8984 gen=147s  train
+  -                            teacher_standard_test                    acc=0.8672 gen=148s  test
+  -                            teacher_poe_gamma_0.65_train             acc=0.8594 gen=220s  train
+  -                            teacher_poe_gamma_0.65_test              acc=0.7969 gen=222s  test
+  teacher_standard             student_naive                            acc=0.1250  
+  teacher_standard             student_strategic_fd                     acc=0.1016  beta_s=0.5, mean_a=-0.3021, frac_mass_top20=0.2256
+  teacher_poe_gamma_0.65       student_naive                            acc=0.1953  
+  teacher_poe_gamma_0.65       student_strategic_fd                     acc=0.1094  beta_s=0.5, mean_a=-0.3838, frac_mass_top20=0.2266
+PASS

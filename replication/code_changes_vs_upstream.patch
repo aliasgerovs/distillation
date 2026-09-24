@@ -1,0 +1,259 @@
+diff --git a/scripts/run_pipeline.py b/scripts/run_pipeline.py
+index f160488..5c12384 100644
+--- a/scripts/run_pipeline.py
++++ b/scripts/run_pipeline.py
+@@ -2,6 +2,7 @@
+ from __future__ import annotations
+ 
+ import argparse
++import gc
+ import os
+ from datetime import datetime
+ from pathlib import Path
+@@ -61,6 +62,12 @@ def _log_stage_end(label: str, start_time: float, extra: str | None = None) -> N
+     console.print(f"[{_now_stamp()}] {label} done in {elapsed}{suffix}")
+ 
+ 
++def _free_cuda() -> None:
++    gc.collect()
++    if torch.cuda.is_available():
++        torch.cuda.empty_cache()
++
++
+ def main() -> None:
+     parser = argparse.ArgumentParser(description="Run the clean antidistillation pipeline.")
+     parser.add_argument("--config", required=True, type=str)
+@@ -167,7 +174,7 @@ def main() -> None:
+             extra += ", internal_only=true"
+         _log_stage_end(stage_label, stage, extra=extra)
+         if split_name != "holdout":
+-            teacher_rows.append({"train_source": "-", "eval_model": f"teacher_standard_{split_name}", "accuracy": acc, "notes": split_name})
++            teacher_rows.append({"train_source": "-", "eval_model": f"teacher_standard_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
+ 
+     if teacher_holdout_source is None:
+         raise RuntimeError("standard holdout traces were not generated")
+@@ -175,24 +182,35 @@ def main() -> None:
+ 
+     # Proxy gradients are computed from standard holdout traces, matching the original pipeline.
+     from clean_sweep.train.distill import compute_student_holdout_grad, _response_template_for_model
+-    stage = _log_stage_start("Loading proxy model")
+-    proxy_model, proxy_tokenizer = load_model_and_tokenizer(cfg.model.proxy_student, cfg.model.tokenizer or cfg.model.proxy_student, cfg, device)
+-    _log_stage_end("Loading proxy model", stage, extra=str(cfg.model.proxy_student))
+-    response_template = _response_template_for_model(cfg.model.proxy_student or "", proxy_tokenizer)
+-    proxy_model.train()
+-    set_seed(cfg.run.seed)
+-    stage_label = "Proxy gradients | source=standard_holdout"
+-    stage = _log_stage_start(stage_label)
+-    proxy_grads = compute_student_holdout_grad(
+-        proxy_model,
+-        proxy_tokenizer,
+-        holdout_full,
+-        device,
+-        response_template,
+-        cfg.distill.max_length,
+-        cfg.distill.holdout_grad_batch_size,
+-    )
+-    _log_stage_end(stage_label, stage, extra=f"n_holdout={len(holdout_full)}")
++    # replication: only ADS teachers use the proxy gradients. Skip them when no ADS teacher is configured;
++    # every later stage re-seeds, so nothing downstream changes.
++    needs_proxy_grads = bool(cfg.teachers.antidistillation_lams)
++    if needs_proxy_grads:
++        stage = _log_stage_start("Loading proxy model")
++        proxy_model, proxy_tokenizer = load_model_and_tokenizer(cfg.model.proxy_student, cfg.model.tokenizer or cfg.model.proxy_student, cfg, device)
++        _log_stage_end("Loading proxy model", stage, extra=str(cfg.model.proxy_student))
++        response_template = _response_template_for_model(cfg.model.proxy_student or "", proxy_tokenizer)
++        proxy_model.train()
++        set_seed(cfg.run.seed)
++        stage_label = "Proxy gradients | source=standard_holdout"
++        stage = _log_stage_start(stage_label)
++        proxy_grads = compute_student_holdout_grad(
++            proxy_model,
++            proxy_tokenizer,
++            holdout_full,
++            device,
++            response_template,
++            cfg.distill.max_length,
++            cfg.distill.holdout_grad_batch_size,
++        )
++        _log_stage_end(stage_label, stage, extra=f"n_holdout={len(holdout_full)}")
++        # replication: the proxy model is only needed for these gradients. Keep them on the CPU until
++        # build_proxy_plus_minus copies each one onto its GPU parameter; the values are unchanged.
++        del proxy_model
++        proxy_grads = {name: g.cpu() for name, g in proxy_grads.items()}
++        _free_cuda()
++    else:
++        proxy_grads = {}
+ 
+     beta_teacher_values = cfg.teachers.strategic_beta_teachers
+     for lam in cfg.teachers.antidistillation_lams:
+@@ -233,7 +251,7 @@ def main() -> None:
+                         stage,
+                         extra=f"n={len(compact)}, accuracy={acc:.4f}",
+                     )
+-                    teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name})
++                    teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
+         else:
+             for split_name in ("train", "test"):
+                 set_seed(cfg.run.seed)
+@@ -267,7 +285,7 @@ def main() -> None:
+                     stage,
+                     extra=f"n={len(compact)}, accuracy={acc:.4f}",
+                 )
+-                teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name})
++                teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
+ 
+     for gamma in cfg.teachers.poe_gammas:
+         for split_name in ("train", "test"):
+@@ -299,7 +317,12 @@ def main() -> None:
+                 stage,
+                 extra=f"n={len(compact)}, accuracy={acc:.4f}",
+             )
+-            teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name})
++            teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
++
++    # replication: the student stage never uses the teacher or the proxy gradients; release them so
++    # student training fits on a 46 GB card.
++    del teacher_model, proxy_grads
++    _free_cuda()
+ 
+     student_rows: list[dict] = []
+     for teacher_source_name, teacher_train_traces in teacher_train_sources.items():
+@@ -358,6 +381,8 @@ def main() -> None:
+                     inspection[: cfg.artifacts.save_inspection_samples],
+                     out_dir / "inspection" / f"{teacher_source_name}_{mode}_beta_{beta_s}.json",
+                 )
++                del student_model, student_tokenizer
++                _free_cuda()
+ 
+     results_rows = teacher_rows + student_rows
+     stage = _log_stage_start("Writing final results")
+diff --git a/src/clean_sweep/data/__init__.py b/src/clean_sweep/data/__init__.py
+index a41025f..e00de98 100644
+--- a/src/clean_sweep/data/__init__.py
++++ b/src/clean_sweep/data/__init__.py
+@@ -1,7 +1,5 @@
+ from .gsm8k import format_prompt_gsm8k, load_gsm8k_splits
+-from .gsm_hard import load_gsm_hard_splits
+ from .math import format_prompt_math, load_math_splits
+-from .svamp import load_svamp_splits
+ 
+ 
+ def load_dataset_splits(
+@@ -19,20 +17,6 @@ def load_dataset_splits(
+             holdout_size=holdout_size,
+             test_size=test_size,
+         )
+-    if dataset_name == "gsm_hard":
+-        return load_gsm_hard_splits(
+-            seed=seed,
+-            train_size=train_size,
+-            holdout_size=holdout_size,
+-            test_size=test_size,
+-        )
+-    if dataset_name == "svamp":
+-        return load_svamp_splits(
+-            seed=seed,
+-            train_size=train_size,
+-            holdout_size=holdout_size,
+-            test_size=test_size,
+-        )
+     if dataset_name == "math":
+         return load_math_splits(
+             seed=seed,
+@@ -47,8 +31,6 @@ __all__ = [
+     "format_prompt_gsm8k",
+     "format_prompt_math",
+     "load_gsm8k_splits",
+-    "load_gsm_hard_splits",
+     "load_math_splits",
+-    "load_svamp_splits",
+     "load_dataset_splits",
+ ]
+diff --git a/src/clean_sweep/generation/core.py b/src/clean_sweep/generation/core.py
+index 29295e7..0ec3a0e 100644
+--- a/src/clean_sweep/generation/core.py
++++ b/src/clean_sweep/generation/core.py
+@@ -111,27 +111,35 @@ class CachedModelWrapper:
+ 
+ 
+ def build_proxy_plus_minus(cfg: FullConfig, tokenizer: Any, device: torch.device, grad_dict: dict[str, torch.Tensor]) -> tuple[CachedModelWrapper, CachedModelWrapper]:
+-    base = AutoModelForCausalLM.from_pretrained(
+-        cfg.model.proxy_student,
+-        trust_remote_code=True,
+-        torch_dtype=get_dtype(cfg.model.torch_dtype),
+-        attn_implementation=cfg.model.attn_implementation,
+-    )
+-    base = base.to(device)
+-    eps = cfg.generation.eps
++    # replication: ported verbatim from the authors' `mahdi` branch (a73d865). Builds each perturbed proxy
++    # from a fresh bf16 load instead of base + fp32 CPU clone, so it peaks at 2 proxy copies on the GPU
++    # instead of 3. The weights are bit-identical (the fp32 round trip is exact for bf16 values).
++    import gc
+ 
+-    def clone_with_sign(sign: float) -> Any:
+-        model = AutoModelForCausalLM.from_config(base.config)
+-        model.load_state_dict(base.state_dict(), strict=True)
+-        model = model.to(device=device, dtype=get_dtype(cfg.model.torch_dtype))
++    eps = cfg.generation.eps
++    dtype = get_dtype(cfg.model.torch_dtype)
++
++    def _build(sign: float) -> Any:
++        model = AutoModelForCausalLM.from_pretrained(
++            cfg.model.proxy_student,
++            trust_remote_code=True,
++            torch_dtype=dtype,
++            attn_implementation=cfg.model.attn_implementation,
++        ).to(device)
+         with torch.no_grad():
+             for name, param in model.named_parameters():
+-                if name in grad_dict and grad_dict[name].shape == param.shape:
+-                    param.add_(grad_dict[name].to(device=param.device, dtype=param.dtype), alpha=sign * eps)
++                g = grad_dict.get(name)
++                if g is not None and g.shape == param.shape:
++                    param.add_(g.to(device=param.device, dtype=param.dtype), alpha=sign * eps)
+         return model
+ 
+-    plus = clone_with_sign(1.0)
+-    minus = clone_with_sign(-1.0)
++    plus = _build(1.0)
++    minus = _build(-1.0)
++
++    gc.collect()
++    if torch.cuda.is_available():
++        torch.cuda.empty_cache()
++
+     return CachedModelWrapper(plus), CachedModelWrapper(minus)
+ 
+ 
+@@ -366,6 +374,17 @@ def generate_teacher_traces(
+                 "full_text": text,
+             })
+ 
++    # replication: ported from the authors' `mahdi` branch (a73d865). Answer forcing only uses the teacher,
++    # so drop the proxies' KV caches from the last batch before its longer prefill.
++    for wrapper in proxy_wrappers:
++        wrapper.reset_cache()
++    if poe_wrapper is not None:
++        poe_wrapper.reset_cache()
++    import gc
++    gc.collect()
++    if torch.cuda.is_available():
++        torch.cuda.empty_cache()
++
+     if cfg.generation.answer_force:
+         final_texts = _answer_force(traces, model=model, tokenizer=tokenizer, cfg=cfg, batch_size=batch_size, device=device)
+         for item, final_text in zip(traces, final_texts):
+diff --git a/src/clean_sweep/train/distill.py b/src/clean_sweep/train/distill.py
+index 13bfd66..29bc64e 100644
+--- a/src/clean_sweep/train/distill.py
++++ b/src/clean_sweep/train/distill.py
+@@ -74,6 +74,9 @@ def compute_student_holdout_grad(
+ ) -> dict[str, torch.Tensor]:
+     collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer, mlm=False)
+     model.train()
++    # replication: activation checkpointing so a batch of 6 fits on a 46 GB card. It recomputes the same
++    # forward pass, so the gradient is unchanged; run_distill's trainer enables it right after anyway.
++    model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+     grads = {name: torch.zeros_like(p.data) for name, p in model.named_parameters() if p.requires_grad}
+     trainable = [(n, p) for n, p in model.named_parameters() if p.requires_grad]
+     n = 0

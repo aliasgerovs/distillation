@@ -1,0 +1,6 @@
+run: outputs/replication/math/seed123/poe_20260923_162122
+  -                            teacher_poe_gamma_0.75_train             acc=0.6236 gen=12918s  train
+  -                            teacher_poe_gamma_0.75_test              acc=0.6070 gen=12827s  test
+  teacher_poe_gamma_0.75       student_naive                            acc=0.1242  
+  teacher_poe_gamma_0.75       student_strategic_fd                     acc=0.1610  beta_s=0.5, mean_a=-0.0944, frac_mass_top20=0.2107
+PASS

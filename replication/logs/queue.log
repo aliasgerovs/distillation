@@ -1,0 +1,38 @@
+[2026-09-23 15:17:30] queue started: 14 jobs, gpus=[0, 1, 2, 3], pid=2724866
+[2026-09-23 15:18:11] STARTED smoke_gsm8k on GPU 0 (pid 2725172)
+[2026-09-23 15:18:11] STARTED smoke_math on GPU 1 (pid 2725173)
+[2026-09-23 15:20:45] queue and smoke jobs stopped by hand to stage models on local /scratch (NFS mmap loads ~30 MB/s per process)
+[2026-09-23 15:24:09] queue started: 14 jobs, gpus=[0, 1, 2, 3], pid=2728119
+[2026-09-23 15:24:49] STARTED smoke_gsm8k on GPU 0 (pid 2728412)
+[2026-09-23 15:24:49] STARTED smoke_math on GPU 1 (pid 2728413)
+[2026-09-23 15:48:33] PASSED smoke_math: gpu=1 exit=0 hours=0.40 peak_mib=37009 check=PASS
+[2026-09-23 15:58:54] FAILED smoke_gsm8k: gpu=0 exit=0 hours=0.57 peak_mib=44729 check=FAIL
+[2026-09-23 15:58:54] BLOCKED math_s456_standard: a dependency failed
+[2026-09-23 15:58:54] BLOCKED math_s456_poe: a dependency failed
+[2026-09-23 15:58:54] BLOCKED math_s123_standard: a dependency failed
+[2026-09-23 15:58:54] BLOCKED math_s123_poe: a dependency failed
+[2026-09-23 15:58:54] BLOCKED math_s789_standard: a dependency failed
+[2026-09-23 15:58:54] BLOCKED math_s789_poe: a dependency failed
+[2026-09-23 15:58:54] BLOCKED gsm8k_s456_standard: a dependency failed
+[2026-09-23 15:58:54] BLOCKED gsm8k_s456_poe: a dependency failed
+[2026-09-23 15:58:54] BLOCKED gsm8k_s123_standard: a dependency failed
+[2026-09-23 15:58:54] BLOCKED gsm8k_s123_poe: a dependency failed
+[2026-09-23 15:58:54] BLOCKED gsm8k_s789_standard: a dependency failed
+[2026-09-23 15:58:54] BLOCKED gsm8k_s789_poe: a dependency failed
+[2026-09-23 15:58:54] queue finished: smoke_gsm8k=failed, smoke_math=passed, math_s456_standard=blocked, math_s456_poe=blocked, math_s123_standard=blocked, math_s123_poe=blocked, math_s789_standard=blocked, math_s789_poe=blocked, gsm8k_s456_standard=blocked, gsm8k_s456_poe=blocked, gsm8k_s123_standard=blocked, gsm8k_s123_poe=blocked, gsm8k_s789_standard=blocked, gsm8k_s789_poe=blocked
+[2026-09-23 16:20:26] smoke_gsm8k re-checked by hand: PASS (the prompt-leak check flagged a PoE trace that echoes the system prompt mid-output; narrowed to traces that start with the prompt). Cleared blocked markers.
+[2026-09-23 16:20:26] queue started: 14 jobs, gpus=[0, 1, 2, 3], pid=2751210
+[2026-09-23 16:21:07] STARTED math_s456_standard on GPU 0 (pid 2751532)
+[2026-09-23 16:21:07] STARTED math_s456_poe on GPU 1 (pid 2751533)
+[2026-09-23 16:21:07] STARTED math_s123_standard on GPU 2 (pid 2751534)
+[2026-09-23 16:21:07] STARTED math_s123_poe on GPU 3 (pid 2751535)
+[2026-09-24 10:05:49] PASSED math_s456_standard: gpu=0 exit=0 hours=17.74 peak_mib=44889 check=PASS
+[2026-09-24 10:06:49] STARTED math_s789_standard on GPU 0 (pid 3087882)
+[2026-09-24 10:07:50] PASSED math_s123_standard: gpu=2 exit=0 hours=17.78 peak_mib=42253 check=PASS
+[2026-09-24 10:08:50] STARTED math_s789_poe on GPU 2 (pid 3088483)
+[2026-09-24 12:02:11] FAILED math_s456_poe: gpu=1 exit=0 hours=19.68 peak_mib=44889 check=FAIL
+[2026-09-24 12:03:11] STARTED gsm8k_s456_standard on GPU 1 (pid 3102785)
+[2026-09-24 12:04:32] FAILED math_s123_poe: gpu=3 exit=0 hours=19.72 peak_mib=42121 check=FAIL
+[2026-09-24 12:05:33] STARTED gsm8k_s456_poe on GPU 3 (pid 3103494)
+[2026-09-24 12:05:43] math_s456_poe re-checked by hand: PASS. The 3 flagged PoE traces echo the system prompt (model output, different formatting, no problem text); check now requires the exact prompt followed by the problem.
+[2026-09-24 12:06:03] math_s123_poe re-checked by hand: PASS (same PoE prompt-echo false positive; queue ran the old check).

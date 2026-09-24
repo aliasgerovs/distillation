@@ -1,0 +1,76 @@
+{
+  "math/standard": {
+    "per_seed": {
+      "123": {
+        "teacher": 62.260000000000005,
+        "passive": 15.52,
+        "adaptive": 15.7,
+        "gen_seconds": 17012.4,
+        "run": "outputs/replication/math/seed123/standard_20260923_162118"
+      },
+      "456": {
+        "teacher": 63.019999999999996,
+        "passive": 15.02,
+        "adaptive": 15.32,
+        "gen_seconds": 17004.6,
+        "run": "outputs/replication/math/seed456/standard_20260923_162117"
+      }
+    },
+    "aggregate": {
+      "teacher": [
+        62.64,
+        0.3799999999999954
+      ],
+      "passive": [
+        15.27,
+        0.25
+      ],
+      "adaptive": [
+        15.51,
+        0.18999999999999947
+      ]
+    },
+    "rel_gain": 1.57170923379175,
+    "time_cost_ratios": [
+      1.0,
+      1.0
+    ]
+  },
+  "math/poe": {
+    "per_seed": {
+      "123": {
+        "teacher": 60.699999999999996,
+        "passive": 12.42,
+        "adaptive": 16.1,
+        "gen_seconds": 25745.5,
+        "run": "outputs/replication/math/seed123/poe_20260923_162122"
+      },
+      "456": {
+        "teacher": 61.5,
+        "passive": 12.139999999999999,
+        "adaptive": 13.780000000000001,
+        "gen_seconds": 25762.5,
+        "run": "outputs/replication/math/seed456/poe_20260923_162117"
+      }
+    },
+    "aggregate": {
+      "teacher": [
+        61.099999999999994,
+        0.4000000000000021
+      ],
+      "passive": [
+        12.28,
+        0.14000000000000054
+      ],
+      "adaptive": [
+        14.940000000000001,
+        1.1600000000000001
+      ]
+    },
+    "rel_gain": 21.6612377850163,
+    "time_cost_ratios": [
+      1.5133373304178128,
+      1.515031226844501
+    ]
+  }
+}

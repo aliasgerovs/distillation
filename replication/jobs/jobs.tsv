@@ -1,0 +1,15 @@
+name	config	after	check
+smoke_gsm8k	replication/jobs/smoke_gsm8k.yaml	-	replication/check_run.py replication/jobs/smoke_gsm8k.yaml
+smoke_math	replication/jobs/smoke_math.yaml	-	replication/check_run.py replication/jobs/smoke_math.yaml
+math_s456_standard	replication/jobs/math_s456_standard.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/math_s456_standard.yaml
+math_s456_poe	replication/jobs/math_s456_poe.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/math_s456_poe.yaml
+math_s123_standard	replication/jobs/math_s123_standard.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/math_s123_standard.yaml
+math_s123_poe	replication/jobs/math_s123_poe.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/math_s123_poe.yaml
+math_s789_standard	replication/jobs/math_s789_standard.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/math_s789_standard.yaml
+math_s789_poe	replication/jobs/math_s789_poe.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/math_s789_poe.yaml
+gsm8k_s456_standard	replication/jobs/gsm8k_s456_standard.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/gsm8k_s456_standard.yaml
+gsm8k_s456_poe	replication/jobs/gsm8k_s456_poe.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/gsm8k_s456_poe.yaml
+gsm8k_s123_standard	replication/jobs/gsm8k_s123_standard.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/gsm8k_s123_standard.yaml
+gsm8k_s123_poe	replication/jobs/gsm8k_s123_poe.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/gsm8k_s123_poe.yaml
+gsm8k_s789_standard	replication/jobs/gsm8k_s789_standard.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/gsm8k_s789_standard.yaml
+gsm8k_s789_poe	replication/jobs/gsm8k_s789_poe.yaml	smoke_gsm8k,smoke_math	replication/check_run.py replication/jobs/gsm8k_s789_poe.yaml

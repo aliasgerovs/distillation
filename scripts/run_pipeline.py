@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import gc
 import os
 from datetime import datetime
 from pathlib import Path
@@ -59,6 +60,12 @@ def _log_stage_end(label: str, start_time: float, extra: str | None = None) -> N
     elapsed = _fmt_duration(time.perf_counter() - start_time)
     suffix = f" | {extra}" if extra else ""
     console.print(f"[{_now_stamp()}] {label} done in {elapsed}{suffix}")
+
+
+def _free_cuda() -> None:
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 
 def main() -> None:
@@ -167,7 +174,7 @@ def main() -> None:
             extra += ", internal_only=true"
         _log_stage_end(stage_label, stage, extra=extra)
         if split_name != "holdout":
-            teacher_rows.append({"train_source": "-", "eval_model": f"teacher_standard_{split_name}", "accuracy": acc, "notes": split_name})
+            teacher_rows.append({"train_source": "-", "eval_model": f"teacher_standard_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
 
     if teacher_holdout_source is None:
         raise RuntimeError("standard holdout traces were not generated")
@@ -175,24 +182,35 @@ def main() -> None:
 
     # Proxy gradients are computed from standard holdout traces, matching the original pipeline.
     from clean_sweep.train.distill import compute_student_holdout_grad, _response_template_for_model
-    stage = _log_stage_start("Loading proxy model")
-    proxy_model, proxy_tokenizer = load_model_and_tokenizer(cfg.model.proxy_student, cfg.model.tokenizer or cfg.model.proxy_student, cfg, device)
-    _log_stage_end("Loading proxy model", stage, extra=str(cfg.model.proxy_student))
-    response_template = _response_template_for_model(cfg.model.proxy_student or "", proxy_tokenizer)
-    proxy_model.train()
-    set_seed(cfg.run.seed)
-    stage_label = "Proxy gradients | source=standard_holdout"
-    stage = _log_stage_start(stage_label)
-    proxy_grads = compute_student_holdout_grad(
-        proxy_model,
-        proxy_tokenizer,
-        holdout_full,
-        device,
-        response_template,
-        cfg.distill.max_length,
-        cfg.distill.holdout_grad_batch_size,
-    )
-    _log_stage_end(stage_label, stage, extra=f"n_holdout={len(holdout_full)}")
+    # replication: only ADS teachers use the proxy gradients. Skip them when no ADS teacher is configured;
+    # every later stage re-seeds, so nothing downstream changes.
+    needs_proxy_grads = bool(cfg.teachers.antidistillation_lams)
+    if needs_proxy_grads:
+        stage = _log_stage_start("Loading proxy model")
+        proxy_model, proxy_tokenizer = load_model_and_tokenizer(cfg.model.proxy_student, cfg.model.tokenizer or cfg.model.proxy_student, cfg, device)
+        _log_stage_end("Loading proxy model", stage, extra=str(cfg.model.proxy_student))
+        response_template = _response_template_for_model(cfg.model.proxy_student or "", proxy_tokenizer)
+        proxy_model.train()
+        set_seed(cfg.run.seed)
+        stage_label = "Proxy gradients | source=standard_holdout"
+        stage = _log_stage_start(stage_label)
+        proxy_grads = compute_student_holdout_grad(
+            proxy_model,
+            proxy_tokenizer,
+            holdout_full,
+            device,
+            response_template,
+            cfg.distill.max_length,
+            cfg.distill.holdout_grad_batch_size,
+        )
+        _log_stage_end(stage_label, stage, extra=f"n_holdout={len(holdout_full)}")
+        # replication: the proxy model is only needed for these gradients. Keep them on the CPU until
+        # build_proxy_plus_minus copies each one onto its GPU parameter; the values are unchanged.
+        del proxy_model
+        proxy_grads = {name: g.cpu() for name, g in proxy_grads.items()}
+        _free_cuda()
+    else:
+        proxy_grads = {}
 
     beta_teacher_values = cfg.teachers.strategic_beta_teachers
     for lam in cfg.teachers.antidistillation_lams:
@@ -233,7 +251,7 @@ def main() -> None:
                         stage,
                         extra=f"n={len(compact)}, accuracy={acc:.4f}",
                     )
-                    teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name})
+                    teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
         else:
             for split_name in ("train", "test"):
                 set_seed(cfg.run.seed)
@@ -267,7 +285,7 @@ def main() -> None:
                     stage,
                     extra=f"n={len(compact)}, accuracy={acc:.4f}",
                 )
-                teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name})
+                teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
 
     for gamma in cfg.teachers.poe_gammas:
         for split_name in ("train", "test"):
@@ -299,7 +317,12 @@ def main() -> None:
                 stage,
                 extra=f"n={len(compact)}, accuracy={acc:.4f}",
             )
-            teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name})
+            teacher_rows.append({"train_source": "-", "eval_model": f"{method_key}_{split_name}", "accuracy": acc, "notes": split_name, "gen_seconds": round(time.perf_counter() - stage, 1)})
+
+    # replication: the student stage never uses the teacher or the proxy gradients; release them so
+    # student training fits on a 46 GB card.
+    del teacher_model, proxy_grads
+    _free_cuda()
 
     student_rows: list[dict] = []
     for teacher_source_name, teacher_train_traces in teacher_train_sources.items():
@@ -358,6 +381,8 @@ def main() -> None:
                     inspection[: cfg.artifacts.save_inspection_samples],
                     out_dir / "inspection" / f"{teacher_source_name}_{mode}_beta_{beta_s}.json",
                 )
+                del student_model, student_tokenizer
+                _free_cuda()
 
     results_rows = teacher_rows + student_rows
     stage = _log_stage_start("Writing final results")

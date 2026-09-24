@@ -74,6 +74,9 @@ def compute_student_holdout_grad(
 ) -> dict[str, torch.Tensor]:
     collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer, mlm=False)
     model.train()
+    # replication: activation checkpointing so a batch of 6 fits on a 46 GB card. It recomputes the same
+    # forward pass, so the gradient is unchanged; run_distill's trainer enables it right after anyway.
+    model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
     grads = {name: torch.zeros_like(p.data) for name, p in model.named_parameters() if p.requires_grad}
     trainable = [(n, p) for n, p in model.named_parameters() if p.requires_grad]
     n = 0

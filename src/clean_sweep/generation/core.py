@@ -111,27 +111,35 @@ class CachedModelWrapper:
 
 
 def build_proxy_plus_minus(cfg: FullConfig, tokenizer: Any, device: torch.device, grad_dict: dict[str, torch.Tensor]) -> tuple[CachedModelWrapper, CachedModelWrapper]:
-    base = AutoModelForCausalLM.from_pretrained(
-        cfg.model.proxy_student,
-        trust_remote_code=True,
-        torch_dtype=get_dtype(cfg.model.torch_dtype),
-        attn_implementation=cfg.model.attn_implementation,
-    )
-    base = base.to(device)
-    eps = cfg.generation.eps
+    # replication: ported verbatim from the authors' `mahdi` branch (a73d865). Builds each perturbed proxy
+    # from a fresh bf16 load instead of base + fp32 CPU clone, so it peaks at 2 proxy copies on the GPU
+    # instead of 3. The weights are bit-identical (the fp32 round trip is exact for bf16 values).
+    import gc
 
-    def clone_with_sign(sign: float) -> Any:
-        model = AutoModelForCausalLM.from_config(base.config)
-        model.load_state_dict(base.state_dict(), strict=True)
-        model = model.to(device=device, dtype=get_dtype(cfg.model.torch_dtype))
+    eps = cfg.generation.eps
+    dtype = get_dtype(cfg.model.torch_dtype)
+
+    def _build(sign: float) -> Any:
+        model = AutoModelForCausalLM.from_pretrained(
+            cfg.model.proxy_student,
+            trust_remote_code=True,
+            torch_dtype=dtype,
+            attn_implementation=cfg.model.attn_implementation,
+        ).to(device)
         with torch.no_grad():
             for name, param in model.named_parameters():
-                if name in grad_dict and grad_dict[name].shape == param.shape:
-                    param.add_(grad_dict[name].to(device=param.device, dtype=param.dtype), alpha=sign * eps)
+                g = grad_dict.get(name)
+                if g is not None and g.shape == param.shape:
+                    param.add_(g.to(device=param.device, dtype=param.dtype), alpha=sign * eps)
         return model
 
-    plus = clone_with_sign(1.0)
-    minus = clone_with_sign(-1.0)
+    plus = _build(1.0)
+    minus = _build(-1.0)
+
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+
     return CachedModelWrapper(plus), CachedModelWrapper(minus)
 
 
@@ -365,6 +373,17 @@ def generate_teacher_traces(
                 "reasoning": reasoning,
                 "full_text": text,
             })
+
+    # replication: ported from the authors' `mahdi` branch (a73d865). Answer forcing only uses the teacher,
+    # so drop the proxies' KV caches from the last batch before its longer prefill.
+    for wrapper in proxy_wrappers:
+        wrapper.reset_cache()
+    if poe_wrapper is not None:
+        poe_wrapper.reset_cache()
+    import gc
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     if cfg.generation.answer_force:
         final_texts = _answer_force(traces, model=model, tokenizer=tokenizer, cfg=cfg, batch_size=batch_size, device=device)
