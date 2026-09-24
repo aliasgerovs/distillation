@@ -11,8 +11,9 @@ from __future__ import annotations
 import json
 import math
 import statistics as st
-import subprocess
 from pathlib import Path
+
+from authors_traces import load_authors_json
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "outputs" / "replication"
@@ -102,7 +103,7 @@ def main() -> None:
               "|z| < 2 means no detectable difference beyond sampling noise.", "",
               "| Teacher | Authors | Ours | Only ours / only theirs | McNemar z |", "| --- | --- | --- | --- | --- |"]
     for teacher, fname in AUTHOR_TRACES.items():
-        theirs = json.loads(subprocess.check_output(["git", "show", f"origin/mahdi:math_output_small/{fname}"], cwd=ROOT))
+        theirs = load_authors_json(f"math_output_small/{fname}")
         # Teacher traces are written long before results.json, so look for the file itself.
         found = sorted((OUT / "math" / "seed456").glob(f"{teacher}_*/teacher/{fname}"))
         ours_path = found[-1] if found else None

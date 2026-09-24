@@ -7,8 +7,6 @@ weighted training) and then passive. Usage: train_memory_probe.py <job config>, 
 """
 from __future__ import annotations
 
-import json
-import subprocess
 import sys
 import tempfile
 
@@ -19,9 +17,11 @@ from clean_sweep.train import run_distill
 from clean_sweep.train.distill import _trace_text_for_training
 from transformers import AutoTokenizer
 
+from authors_traces import load_authors_json
+
 cfg = FullConfig.from_yaml(sys.argv[1])
 cfg.distill.num_epochs = 1
-rows = json.loads(subprocess.check_output(["git", "show", "origin/mahdi:math_output_small/train_standard.json"]))
+rows = load_authors_json("math_output_small/train_standard.json")
 tok = AutoTokenizer.from_pretrained(cfg.model.student_tokenizer)
 for r in rows:
     r["problem"] = r["prompt"]

@@ -8,8 +8,6 @@ math-verify version labels answers the way theirs did.
 """
 from __future__ import annotations
 
-import json
-import subprocess
 import sys
 
 from types import SimpleNamespace
@@ -19,6 +17,8 @@ from transformers import AutoConfig, AutoTokenizer, GenerationConfig
 from clean_sweep.data import format_prompt_math, load_dataset_splits
 from clean_sweep.eval import check_trace_correctness
 from clean_sweep.generation.core import align_tokenizer_to_model, ensure_chat_template
+
+from authors_traces import load_authors_json
 
 TEACHER = "/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B"
 tok = ensure_chat_template(AutoTokenizer.from_pretrained(TEACHER, trust_remote_code=True, padding_side="left"))
@@ -34,7 +34,7 @@ def rendered_prompt(problem: str) -> str:
 
 split = load_dataset_splits("math", seed=456, train_size=5000, holdout_size=2500, test_size=5000)["train"]
 for fname in sys.argv[1:] or ["train_standard.json", "train_poe_gamma_0.75.json"]:
-    rows = json.loads(subprocess.check_output(["git", "show", f"origin/mahdi:math_output_small/{fname}"]))
+    rows = load_authors_json(f"math_output_small/{fname}")
     agree_af = agree_raw = 0
     flips = []
     for row, ex in zip(rows, split):
