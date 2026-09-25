@@ -1,0 +1,6 @@
+run: outputs/replication/gsm8k/seed123/standard_20260924_204755
+  -                            teacher_standard_train                   acc=0.8849 gen=6277s  train
+  -                            teacher_standard_test                    acc=0.8751 gen=1470s  test
+  teacher_standard             student_naive                            acc=0.5881  
+  teacher_standard             student_strategic_fd                     acc=0.5889  beta_s=0.5, mean_a=-0.2895, frac_mass_top20=0.2297
+PASS

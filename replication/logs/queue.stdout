@@ -15,3 +15,9 @@
 [2026-09-24 20:46:44] STARTED gsm8k_s123_standard on GPU 3 (pid 3212067)
 [2026-09-24 20:47:47] PASSED gsm8k_s456_standard: gpu=1 exit=0 hours=8.74 peak_mib=37769 check=PASS
 [2026-09-24 20:48:47] STARTED gsm8k_s123_poe on GPU 1 (pid 3212577)
+[2026-09-25 03:54:15] PASSED math_s789_standard: gpu=0 exit=0 hours=17.78 peak_mib=45409 check=PASS
+[2026-09-25 03:55:15] STARTED gsm8k_s789_standard on GPU 0 (pid 3360314)
+[2026-09-25 05:33:43] PASSED gsm8k_s123_poe: gpu=1 exit=0 hours=8.75 peak_mib=44769 check=PASS
+[2026-09-25 05:34:46] PASSED gsm8k_s123_standard: gpu=3 exit=0 hours=8.80 peak_mib=36929 check=PASS
+[2026-09-25 05:34:46] STARTED gsm8k_s789_poe on GPU 1 (pid 3396040)
+[2026-09-25 05:53:12] PASSED math_s789_poe: gpu=2 exit=0 hours=19.74 peak_mib=45169 check=PASS

@@ -54,3 +54,37 @@ You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast t
 done in 2h 14m 18s
 [18:16:35] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
 split=test...
+[21:26:48] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
+split=test done in 3h 10m 12s | n=5000, accuracy=0.1380
+[21:26:48] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5...
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+{'train_runtime': 8006.1147, 'train_samples_per_second': 1.874, 'train_steps_per_second': 0.078, 'train_loss': 1.9191065154007176, 'epoch': 3.0}
+[00:42:34] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 done in 3h 15m 45s | mean_a=-0.0706, frac_mass_top20=0.2083
+[00:42:34] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test...
+[03:53:12] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test done in 3h 10m 37s | n=5000, accuracy=0.1476
+[03:53:12] Writing final results...
+[03:53:12] Writing final results done in 0.1s | rows=4
+Finished clean pipeline run at 
+outputs/replication/math/seed789/standard_20260924_100731
+# Results
+
+## Comparison Matrix
+
+| Teacher | Teacher Accuracy | student_naive | student_strategic_fd (beta_s=0.5)
+|
+| --- | --- | --- | --- |
+| teacher_standard | 0.6340 | 0.1380 | 0.1476<br><sub>mean_a=-0.0706, 
+frac_mass_top20=0.2083</sub> |
+
+Model Context:
+- Dataset: `math`
+- Teacher model: 
+`/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B`
+- Student model: `/scratch/aliasgarov/distillation-game/models/Llama-3.2-3B`
+

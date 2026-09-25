@@ -1,0 +1,6 @@
+run: outputs/replication/math/seed789/standard_20260924_100731
+  -                            teacher_standard_train                   acc=0.6166 gen=8526s  train
+  -                            teacher_standard_test                    acc=0.6340 gen=8461s  test
+  teacher_standard             student_naive                            acc=0.1380  
+  teacher_standard             student_strategic_fd                     acc=0.1476  beta_s=0.5, mean_a=-0.0706, frac_mass_top20=0.2083
+PASS
