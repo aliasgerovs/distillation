@@ -4,6 +4,27 @@ Original code: github.com/ysfalh/distillation-game, `main` @ `671704e`; `git dif
 `code_changes_vs_upstream.patch`) shows exactly what we changed in the pipeline.
 Paper: [arXiv:2605.22737v3](https://arxiv.org/abs/2605.22737v3) (a local copy in `paper/` is not committed).
 
+## Conclusions (all 12 runs, 3 seeds each; full table in `RESULTS.md`)
+
+| Mean ± s.e. over 3 seeds (ours / paper) | Teacher acc. | Passive student | Adaptive student | Rel. gain |
+| --- | --- | --- | --- | --- |
+| GSM8K Standard | 87.5 / 87.2 | 58.8 / 57.2 | 58.8 / 56.7 | +0% / −1% |
+| GSM8K PoE (γ = 0.65) | 81.0 / 81.6 | **49.6 ± 0.3 / 39.3 ± 3.3** | 51.6 / 49.5 | +4% / +26% |
+| MATH Standard | 62.9 / 61.8 | 14.8 / 15.2 | 15.3 / 15.3 | +3% / +1% |
+| MATH PoE (γ = 0.75) | 60.8 / 60.1 | **12.4 ± 0.2 / 9.0 ± 2.9** | 14.9 / 12.9 | +20% / +44% |
+
+- **Replicated:** both teachers (and against the authors' own released traces on the same prompts), every
+  Standard-teacher student, PoE's effect on traces (about 40–60% shorter at almost no accuracy cost), and the
+  direction of the paper's main claim: on all 6 PoE runs the adaptive student beats the passive one, and
+  adaptive reweighting does nothing against the undefended teacher.
+- **Not replicated in size:** our passive students trained on PoE traces are much stronger than the paper's
+  (+10 points on GSM8K, +3.4 on MATH, with small seed-to-seed spread), so PoE blocks about half as much
+  leakage under passive evaluation and the passive–adaptive gap is several times smaller.
+- **Partly explained:** the authors' other branch trains students on the raw trace instead of trace + forced
+  answer; that lowers only the PoE student (by 2.7 points on GSM8K seed 456; see the diagnostic below).
+- **Time cost** (PoE vs Standard generation): 1.49× GSM8K, 1.52× MATH on A40s (paper 1.64×, 2.33× on
+  B200/H200/A100).
+
 ## Scope
 
 The **Standard** (undefended) teacher and the paper's **PoE** teacher at its Table 1 operating points

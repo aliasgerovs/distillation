@@ -1,0 +1,6 @@
+run: outputs/replication/gsm8k/seed789/poe_20260925_053511
+  -                            teacher_poe_gamma_0.65_train             acc=0.8477 gen=9429s  train
+  -                            teacher_poe_gamma_0.65_test              acc=0.7949 gen=2186s  test
+  teacher_poe_gamma_0.65       student_naive                            acc=0.4971  
+  teacher_poe_gamma_0.65       student_strategic_fd                     acc=0.5161  beta_s=0.5, mean_a=-0.4010, frac_mass_top20=0.2338
+PASS

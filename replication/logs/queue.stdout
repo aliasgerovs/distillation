@@ -21,3 +21,6 @@
 [2026-09-25 05:34:46] PASSED gsm8k_s123_standard: gpu=3 exit=0 hours=8.80 peak_mib=36929 check=PASS
 [2026-09-25 05:34:46] STARTED gsm8k_s789_poe on GPU 1 (pid 3396040)
 [2026-09-25 05:53:12] PASSED math_s789_poe: gpu=2 exit=0 hours=19.74 peak_mib=45169 check=PASS
+[2026-09-25 12:39:27] PASSED gsm8k_s789_standard: gpu=0 exit=0 hours=8.73 peak_mib=33621 check=PASS
+[2026-09-25 14:16:56] PASSED gsm8k_s789_poe: gpu=1 exit=0 hours=8.70 peak_mib=44181 check=PASS
+[2026-09-25 14:16:56] queue finished: smoke_gsm8k=passed, smoke_math=passed, math_s456_standard=passed, math_s456_poe=passed, math_s123_standard=passed, math_s123_poe=passed, math_s789_standard=passed, math_s789_poe=passed, gsm8k_s456_standard=passed, gsm8k_s456_poe=passed, gsm8k_s123_standard=passed, gsm8k_s123_poe=passed, gsm8k_s789_standard=passed, gsm8k_s789_poe=passed

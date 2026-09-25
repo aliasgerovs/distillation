@@ -1,0 +1,28 @@
+[
+  {
+    "train_source": "-",
+    "eval_model": "teacher_poe_gamma_0.65_train",
+    "accuracy": 0.847651775486827,
+    "notes": "train",
+    "gen_seconds": 9428.6
+  },
+  {
+    "train_source": "-",
+    "eval_model": "teacher_poe_gamma_0.65_test",
+    "accuracy": 0.7948717948717948,
+    "notes": "test",
+    "gen_seconds": 2185.6
+  },
+  {
+    "train_source": "teacher_poe_gamma_0.65",
+    "eval_model": "student_naive",
+    "accuracy": 0.49710504549214224,
+    "notes": ""
+  },
+  {
+    "train_source": "teacher_poe_gamma_0.65",
+    "eval_model": "student_strategic_fd",
+    "accuracy": 0.5161290322580645,
+    "notes": "beta_s=0.5, mean_a=-0.4010, frac_mass_top20=0.2338"
+  }
+]

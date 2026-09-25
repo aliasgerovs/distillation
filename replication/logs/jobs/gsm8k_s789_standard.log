@@ -37,3 +37,30 @@ beta_s=0.5...
 You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
 `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
 The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+{'train_runtime': 6775.9707, 'train_samples_per_second': 2.319, 'train_steps_per_second': 0.097, 'train_loss': 1.3469269867175608, 'epoch': 3.0}
+[12:03:10] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 done in 2h 42m 22s | mean_a=-0.2941, frac_mass_top20=0.2303
+[12:03:10] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test...
+[12:39:05] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test done in 35m 54s | n=1209, accuracy=0.5906
+[12:39:05] Writing final results...
+[12:39:05] Writing final results done in 0.1s | rows=4
+Finished clean pipeline run at 
+outputs/replication/gsm8k/seed789/standard_20260925_035625
+# Results
+
+## Comparison Matrix
+
+| Teacher | Teacher Accuracy | student_naive | student_strategic_fd (beta_s=0.5)
+|
+| --- | --- | --- | --- |
+| teacher_standard | 0.8817 | 0.5931 | 0.5906<br><sub>mean_a=-0.2941, 
+frac_mass_top20=0.2303</sub> |
+
+Model Context:
+- Dataset: `gsm8k`
+- Teacher model: 
+`/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B`
+- Student model: `/scratch/aliasgarov/distillation-game/models/Llama-3.2-3B`
+
