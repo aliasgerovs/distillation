@@ -1,0 +1,10 @@
+{
+  "job": "gsm8k_s456_standard",
+  "variant": "mahdi",
+  "teacher_traces": "train_standard.json",
+  "source_run": "outputs/replication/gsm8k/seed456/standard_20260924_120451",
+  "passive_accuracy": 0.5822994210090985,
+  "original_passive_accuracy_main_variant": 0.5822994210090985,
+  "n_test": 1209,
+  "training_texts_differing_from_raw_trace": 0
+}

@@ -93,3 +93,20 @@ reads the chat markers from the first trace and raises if they are missing.
 | Our PoE (γ = 0.75) teacher vs. the authors' on the same prompts | 61.56% vs 61.16% answer-forced, 53.10% vs 52.38% raw, median 251 vs 253 words; paired: 511 only ours, 491 only theirs (McNemar z = +0.6) |
 | Holdout traces generated independently by the Standard and PoE jobs of the same seed | Byte-identical (seeds 123 and 456), so splitting the pipeline one job per teacher changes nothing |
 | Smoke tests (GSM8K 128 / MATH 64 problems, 1 epoch) | Both pass end to end; GSM8K teacher 86.7% Standard / 79.7% PoE on 128 test problems (paper: 87.2 / 81.6) |
+
+## Diagnostic: the student's training text (GSM8K seed 456, passive students)
+
+Our PoE passive students are much stronger than the paper's (GSM8K 49.6 vs 39.3), while teachers and Standard
+students match. The authors' two branches build the student's training text differently: `main` (the official
+release, which our runs use) appends the answer-forced `**Final Answer**` line to every trace; their `mahdi`
+branch trains on the raw trace. `diagnose_training_text.py` retrains the passive student on the same traces with
+the raw-trace text, changing nothing else.
+
+| Teacher traces | `main` text (our runs) | Raw trace (`mahdi`) | Solved only by one / only by the other | Paper |
+| --- | --- | --- | --- | --- |
+| Standard | 58.23% | 58.23% | 163 / 163 (different outputs, no net effect) | 57.24 ± 0.25 |
+| PoE (γ = 0.65) | 49.13% | 46.40% | 188 / 155 (McNemar z = 1.8) | 39.26 ± 3.33 |
+
+The difference only matters for PoE: PoE traces rarely finish their thinking (15% contain `</think>` vs 90% for
+Standard), and 19% of them reach the right answer only through answer forcing (11% for Standard). It accounts
+for about 3 of the 10-point GSM8K gap on this seed; the rest is unexplained.

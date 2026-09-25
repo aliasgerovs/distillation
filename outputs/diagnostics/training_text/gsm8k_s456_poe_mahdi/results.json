@@ -1,0 +1,10 @@
+{
+  "job": "gsm8k_s456_poe",
+  "variant": "mahdi",
+  "teacher_traces": "train_poe_gamma_0.65.json",
+  "source_run": "outputs/replication/gsm8k/seed456/poe_20260924_120544",
+  "passive_accuracy": 0.4640198511166253,
+  "original_passive_accuracy_main_variant": 0.4913151364764268,
+  "n_test": 1209,
+  "training_texts_differing_from_raw_trace": 0
+}

@@ -13,3 +13,20 @@ test=1209
 [05:35:15] Loading teacher model done in 2.8s | 
 /scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B
 [05:35:15] Teacher generation | method=standard | split=holdout...
+[06:20:18] Teacher generation | method=standard | split=holdout done in 45m 3s |
+n=2235, accuracy=0.8774, internal_only=true
+[06:20:18] Teacher generation | method=poe | gamma=0.65 | split=train...
+[08:57:26] Teacher generation | method=poe | gamma=0.65 | split=train done in 2h
+37m 8s | n=5238, accuracy=0.8477
+[08:57:26] Teacher generation | method=poe | gamma=0.65 | split=test...
+[09:33:52] Teacher generation | method=poe | gamma=0.65 | split=test done in 36m
+25s | n=1209, accuracy=0.7949
+[09:33:52] Student training | source=teacher_poe_gamma_0.65 | mode=naive | 
+beta_s=1.0...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'train_runtime': 4948.9542, 'train_samples_per_second': 3.175, 'train_steps_per_second': 0.133, 'train_loss': 0.2965753053058409, 'entropy': 2.7188532495143622, 'num_tokens': 12138654.0, 'mean_token_accuracy': 0.9165925719484022, 'epoch': 3.0}
+[10:56:32] Student training | source=teacher_poe_gamma_0.65 | mode=naive | 
+beta_s=1.0 done in 1h 22m 40s
+[10:56:32] Student eval | source=teacher_poe_gamma_0.65 | mode=naive | 
+beta_s=1.0 | split=test...

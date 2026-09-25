@@ -16,3 +16,24 @@ test=1209
 [04:41:37] Teacher generation | method=standard | split=holdout done in 45m 4s |
 n=2235, accuracy=0.8774
 [04:41:37] Teacher generation | method=standard | split=train...
+[06:27:15] Teacher generation | method=standard | split=train done in 1h 45m 37s
+| n=5238, accuracy=0.8807
+[06:27:15] Teacher generation | method=standard | split=test...
+[06:51:38] Teacher generation | method=standard | split=test done in 24m 23s | 
+n=1209, accuracy=0.8817
+[06:51:38] Student training | source=teacher_standard | mode=naive | 
+beta_s=1.0...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'train_runtime': 6783.3425, 'train_samples_per_second': 2.317, 'train_steps_per_second': 0.097, 'train_loss': 0.3520220055427725, 'entropy': 3.25776735832328, 'num_tokens': 16808646.0, 'mean_token_accuracy': 0.8929853916350281, 'epoch': 3.0}
+[08:44:56] Student training | source=teacher_standard | mode=naive | beta_s=1.0 
+done in 1h 53m 17s
+[08:44:56] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
+split=test...
+[09:20:47] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
+split=test done in 35m 51s | n=1209, accuracy=0.5931
+[09:20:48] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5...
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
