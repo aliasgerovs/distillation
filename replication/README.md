@@ -14,7 +14,7 @@ Paper: [arXiv:2605.22737v3](https://arxiv.org/abs/2605.22737v3) (a local copy in
 | MATH PoE (γ = 0.75) | 60.8 / 60.1 | **12.4 ± 0.2 / 9.0 ± 2.9** | 14.9 / 12.9 | +20% / +44% |
 
 - **Replicated:** both teachers (and against the authors' own released traces on the same prompts), every
-  Standard-teacher student, PoE's effect on traces (about 40–60% shorter at almost no accuracy cost), and the
+  Standard-teacher student, PoE's effect on the teacher (traces about 45–60% shorter, at a teacher-accuracy cost of 6.5 points on GSM8K and 2.1 on MATH, close to the paper's 5.6 and 1.7), and the
   direction of the paper's main claim: on all 6 PoE runs the adaptive student beats the passive one, and
   adaptive reweighting does nothing against the undefended teacher.
 - **Not replicated in size:** our passive students trained on PoE traces are much stronger than the paper's
