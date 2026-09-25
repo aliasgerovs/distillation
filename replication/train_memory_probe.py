@@ -21,7 +21,7 @@ from authors_traces import load_authors_json
 
 cfg = FullConfig.from_yaml(sys.argv[1])
 cfg.distill.num_epochs = 1
-rows = load_authors_json("math_output_small/train_standard.json")
+rows = load_authors_json("train_standard.json")
 tok = AutoTokenizer.from_pretrained(cfg.model.student_tokenizer)
 for r in rows:
     r["problem"] = r["prompt"]

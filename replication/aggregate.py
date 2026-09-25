@@ -103,7 +103,7 @@ def main() -> None:
               "|z| < 2 means no detectable difference beyond sampling noise.", "",
               "| Teacher | Authors | Ours | Only ours / only theirs | McNemar z |", "| --- | --- | --- | --- | --- |"]
     for teacher, fname in AUTHOR_TRACES.items():
-        theirs = load_authors_json(f"math_output_small/{fname}")
+        theirs = load_authors_json(fname)
         # Teacher traces are written long before results.json, so look for the file itself.
         found = sorted((OUT / "math" / "seed456").glob(f"{teacher}_*/teacher/{fname}"))
         ours_path = found[-1] if found else None

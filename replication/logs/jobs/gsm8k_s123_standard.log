@@ -1,0 +1,15 @@
+[20:47:55] Run initialized | 
+output=outputs/replication/gsm8k/seed123/standard_20260924_204755 | seed=123
+[20:47:55] Loading GSM8K splits...
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/grads/aliasgarov/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Wed Sep 23 16:01:23 2026).
+Using the latest cached version of the dataset since madrylab/gsm8k-platinum couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/grads/aliasgarov/.cache/huggingface/datasets/madrylab___gsm8k-platinum/main/0.0.0/e762492455a1cf7967de89f05b6bef72fc713b66 (last modified on Wed Sep 23 14:59:02 2026).
+[20:47:56] Loading GSM8K splits done in 0.4s | train=5238, holdout=2235, 
+test=1209
+[20:47:56] Saved prompt dictionary
+[20:47:56] Loading teacher model on cuda...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[20:48:04] Loading teacher model done in 8.6s | 
+/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B
+[20:48:04] Teacher generation | method=standard | split=holdout...

@@ -1,6 +1,6 @@
 # Replicating *The Distillation Game* (arXiv:2605.22737v3)
 
-Upstream code: github.com/ysfalh/distillation-game, `main` @ `671704e`; `git diff 671704e` (or
+Original code: github.com/ysfalh/distillation-game, `main` @ `671704e`; `git diff 671704e` (or
 `code_changes_vs_upstream.patch`) shows exactly what we changed in the pipeline.
 Paper: [arXiv:2605.22737v3](https://arxiv.org/abs/2605.22737v3) (a local copy in `paper/` is not committed).
 
@@ -23,12 +23,12 @@ are the paper's (Section 4.1, Appendix C.1); see `configs/paper_base.yaml`.
 | `job_queue.py` | Starts jobs only on idle GPUs (< 1 GiB used for 3 polls), one per GPU; smoke tests gate the rest |
 | `check_run.py` | Per-run sanity check: all rows present, no prompt text in traces, plausible teacher accuracy |
 | `memory_probe.py`, `train_memory_probe.py` | Peak-memory probes for the heaviest generation batch and the longest student-training texts |
-| `authors_traces.py` | Reads the authors' released MATH seed-456 traces from their `mahdi` branch (remote `upstream`; in a fresh clone: `git remote add upstream https://github.com/ysfalh/distillation-game.git && git fetch upstream mahdi`) |
+| `reference/authors_math_seed456/` | The authors' released MATH seed-456 Standard and PoE teacher traces (30 MB), used by `aggregate.py` and `regrade_authors.py` |
 | `aggregate.py` | Writes `RESULTS.md`: ours vs. Table 1, plus a check against the authors' own seed-456 MATH traces |
 | `models/Llama-3.2-3B/` | Student weights (symlinked from the unsloth mirror) with Meta's config semantics |
 | `/scratch/aliasgarov/distillation-game/models/` | Local NVMe copies of teacher, proxy and student that the runs load (SHA-256 checked against the HF cache). Loading from the NFS cache ran at ~30 MB/s per process. If `/scratch` is wiped, re-copy from `~/.cache/huggingface` |
 | `logs/queue.log`, `logs/jobs/` | Queue events and per-job logs; `state/` holds pass/fail markers |
-| `../outputs/replication/` | Run outputs (traces, results.json), gitignored upstream |
+| `../outputs/replication/` | Run outputs. Each run's small files (results, config snapshot, manifest, sample traces) are committed; the bulk trace JSONs (~100 MB per run) stay on the machine |
 
 ```bash
 tail -f replication/logs/queue.log            # job starts, pass/fail, peak GPU memory
@@ -87,7 +87,7 @@ reads the chat markers from the first trace and raises if they are missing.
 
 | Check | Result |
 | --- | --- |
-| Our MATH seed-456 train split vs. the authors' released traces (`mahdi:math_output_small/`) | Identical, all 5,000 prompts in order |
+| Our MATH seed-456 train split vs. the authors' released traces (`reference/authors_math_seed456/`) | Identical, all 5,000 prompts in order |
 | Re-grading the authors' released MATH traces with our grader (`regrade_authors.py`; texts rebuilt with the exact rendered prompt) | Answer-forced correctness agrees on 4,996/5,000 Standard and 4,998/5,000 PoE traces; the rest are ours = wrong, theirs = right |
 | Our Standard teacher vs. the authors' on the same 5,000 MATH seed-456 train prompts | 62.28% vs 61.16% answer-forced, 21.94% vs 21.40% raw, median 609 vs 611 words; paired: 405 solved only by ours, 349 only by theirs (McNemar z = +2.0, borderline) |
 | Our PoE (γ = 0.75) teacher vs. the authors' on the same prompts | 61.56% vs 61.16% answer-forced, 53.10% vs 52.38% raw, median 251 vs 253 words; paired: 511 only ours, 491 only theirs (McNemar z = +0.6) |

@@ -1,0 +1,28 @@
+[
+  {
+    "train_source": "-",
+    "eval_model": "teacher_standard_train",
+    "accuracy": 0.6322,
+    "notes": "train",
+    "gen_seconds": 8551.2
+  },
+  {
+    "train_source": "-",
+    "eval_model": "teacher_standard_test",
+    "accuracy": 0.6226,
+    "notes": "test",
+    "gen_seconds": 8461.2
+  },
+  {
+    "train_source": "teacher_standard",
+    "eval_model": "student_naive",
+    "accuracy": 0.1552,
+    "notes": ""
+  },
+  {
+    "train_source": "teacher_standard",
+    "eval_model": "student_strategic_fd",
+    "accuracy": 0.157,
+    "notes": "beta_s=0.5, mean_a=-0.0720, frac_mass_top20=0.2084"
+  }
+]

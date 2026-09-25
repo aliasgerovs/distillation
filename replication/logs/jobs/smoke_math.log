@@ -1,0 +1,154 @@
+[15:18:22] Run initialized | 
+output=outputs/replication/smoke/smoke_math_20260923_151822 | seed=456
+[15:18:22] Loading MATH splits...
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 15:10:42 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'counting_and_probability' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/counting_and_probability/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:04 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'geometry' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/geometry/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:05 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'intermediate_algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/intermediate_algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:06 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'number_theory' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/number_theory/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:07 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'prealgebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/prealgebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:08 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'precalculus' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/precalculus/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:09 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 15:10:42 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'counting_and_probability' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/counting_and_probability/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:04 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'geometry' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/geometry/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:05 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'intermediate_algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/intermediate_algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:06 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'number_theory' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/number_theory/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:07 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'prealgebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/prealgebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:08 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'precalculus' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/precalculus/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:09 2026).
+[15:18:22] Loading MATH splits done in 0.3s | train=64, holdout=12, test=64
+[15:18:22] Saved prompt dictionary
+[15:18:22] Loading teacher model on cuda...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[15:24:59] Run initialized | 
+output=outputs/replication/smoke/smoke_math_20260923_152459 | seed=456
+[15:24:59] Loading MATH splits...
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 15:18:22 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'counting_and_probability' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/counting_and_probability/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:04 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'geometry' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/geometry/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:05 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'intermediate_algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/intermediate_algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:06 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'number_theory' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/number_theory/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:07 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'prealgebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/prealgebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:08 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'precalculus' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/precalculus/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:09 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 15:18:22 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'counting_and_probability' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/counting_and_probability/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:04 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'geometry' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/geometry/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:05 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'intermediate_algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/intermediate_algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:06 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'number_theory' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/number_theory/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:07 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'prealgebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/prealgebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:08 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'precalculus' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/precalculus/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:09 2026).
+[15:25:00] Loading MATH splits done in 0.3s | train=64, holdout=12, test=64
+[15:25:00] Saved prompt dictionary
+[15:25:00] Loading teacher model on cuda...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[15:25:02] Loading teacher model done in 2.2s | 
+/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B
+[15:25:02] Teacher generation | method=standard | split=holdout...
+[15:26:00] Teacher generation | method=standard | split=holdout done in 57.6s | 
+n=12, accuracy=0.8333
+[15:26:00] Teacher generation | method=standard | split=train...
+[15:27:48] Teacher generation | method=standard | split=train done in 1m 48s | 
+n=64, accuracy=0.6719
+[15:27:48] Teacher generation | method=standard | split=test...
+[15:29:37] Teacher generation | method=standard | split=test done in 1m 48s | 
+n=64, accuracy=0.8438
+[15:29:37] Teacher generation | method=poe | gamma=0.75 | split=train...
+[15:32:23] Teacher generation | method=poe | gamma=0.75 | split=train done in 2m
+46s | n=64, accuracy=0.7500
+[15:32:23] Teacher generation | method=poe | gamma=0.75 | split=test...
+[15:35:05] Teacher generation | method=poe | gamma=0.75 | split=test done in 2m 
+42s | n=64, accuracy=0.8125
+[15:35:06] Student training | source=teacher_standard | mode=naive | 
+beta_s=1.0...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'train_runtime': 36.5436, 'train_samples_per_second': 1.751, 'train_steps_per_second': 0.082, 'train_loss': 5.603366851806641, 'entropy': 3.6786894581534644, 'num_tokens': 85090.0, 'mean_token_accuracy': 0.28228074447675183, 'epoch': 1.0}
+[15:35:46] Student training | source=teacher_standard | mode=naive | beta_s=1.0 
+done in 40.4s
+[15:35:46] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
+split=test...
+[15:38:12] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
+split=test done in 2m 25s | n=64, accuracy=0.0000
+[15:38:12] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5...
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+{'train_runtime': 34.3783, 'train_samples_per_second': 1.862, 'train_steps_per_second': 0.087, 'train_loss': 20.80348078409831, 'epoch': 1.0}
+[15:39:25] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 done in 1m 12s | mean_a=-0.0549, frac_mass_top20=0.1957
+[15:39:25] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test...
+[15:41:51] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test done in 2m 25s | n=64, accuracy=0.0000
+[15:41:51] Student training | source=teacher_poe_gamma_0.75 | mode=naive | 
+beta_s=1.0...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'train_runtime': 27.5582, 'train_samples_per_second': 2.322, 'train_steps_per_second': 0.109, 'train_loss': 4.510903994242351, 'entropy': 3.007913979617032, 'num_tokens': 68290.0, 'mean_token_accuracy': 0.4122789339585738, 'epoch': 1.0}
+[15:42:22] Student training | source=teacher_poe_gamma_0.75 | mode=naive | 
+beta_s=1.0 done in 30.8s
+[15:42:22] Student eval | source=teacher_poe_gamma_0.75 | mode=naive | 
+beta_s=1.0 | split=test...
+[15:44:48] Student eval | source=teacher_poe_gamma_0.75 | mode=naive | 
+beta_s=1.0 | split=test done in 2m 25s | n=64, accuracy=0.0000
+[15:44:48] Student training | source=teacher_poe_gamma_0.75 | mode=strategic_fd 
+| beta_s=0.5...
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+{'train_runtime': 27.5756, 'train_samples_per_second': 2.321, 'train_steps_per_second': 0.109, 'train_loss': 21.747406005859375, 'epoch': 1.0}
+[15:45:49] Student training | source=teacher_poe_gamma_0.75 | mode=strategic_fd 
+| beta_s=0.5 done in 1m 1s | mean_a=-0.1129, frac_mass_top20=0.2027
+[15:45:49] Student eval | source=teacher_poe_gamma_0.75 | mode=strategic_fd | 
+beta_s=0.5 | split=test...
+[15:48:15] Student eval | source=teacher_poe_gamma_0.75 | mode=strategic_fd | 
+beta_s=0.5 | split=test done in 2m 25s | n=64, accuracy=0.0000
+[15:48:15] Writing final results...
+[15:48:15] Writing final results done in 0.0s | rows=8
+Finished clean pipeline run at 
+outputs/replication/smoke/smoke_math_20260923_152459
+# Results
+
+## Comparison Matrix
+
+| Teacher | Teacher Accuracy | student_naive | student_strategic_fd (beta_s=0.5)
+|
+| --- | --- | --- | --- |
+| teacher_poe_gamma_0.75 | 0.8125 | 0.0000 | 0.0000<br><sub>mean_a=-0.1129, 
+frac_mass_top20=0.2027</sub> |
+| teacher_standard | 0.8438 | 0.0000 | 0.0000<br><sub>mean_a=-0.0549, 
+frac_mass_top20=0.1957</sub> |
+
+Model Context:
+- Dataset: `math`
+- Teacher model: 
+`/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B`
+- Student model: `/scratch/aliasgarov/distillation-game/models/Llama-3.2-3B`
+

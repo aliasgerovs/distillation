@@ -1,0 +1,22 @@
+model ok: Qwen/Qwen2.5-3B /home/grads/aliasgarov/.cache/huggingface/hub/models--Qwen--Qwen2.5-3B/snapshots/3aab1f1954e9cc14eb9509a215f9e5ca08227a9b
+model ok: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B /home/grads/aliasgarov/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60
+Generating train split:   0%|          | 0/7473 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 7473/7473 [00:00<00:00, 63526.36 examples/s]
+Generating test split:   0%|          | 0/1319 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1319/1319 [00:00<00:00, 110630.25 examples/s]
+dataset ok: openai/gsm8k
+Generating test split:   0%|          | 0/1209 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1209/1209 [00:00<00:00, 95283.89 examples/s]
+dataset ok: madrylab/gsm8k-platinum
+Generating train split:   0%|          | 0/1744 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 1744/1744 [00:00<00:00, 107930.27 examples/s]
+Generating test split:   0%|          | 0/1187 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1187/1187 [00:00<00:00, 107238.16 examples/s]
+Generating train split:   0%|          | 0/771 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 771/771 [00:00<00:00, 11640.49 examples/s]
+Generating test split:   0%|          | 0/474 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 474/474 [00:00<00:00, 19661.19 examples/s]
+Generating train split:   0%|          | 0/870 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 870/870 [00:00<00:00, 39314.82 examples/s]
+Generating test split:   0%|          | 0/479 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 479/479 [00:00<00:00, 19941.55 examples/s]
+Generating train split:   0%|          | 0/1295 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 1295/1295 [00:00<00:00, 69777.55 examples/s]
+Generating test split:   0%|          | 0/903 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 903/903 [00:00<00:00, 70328.23 examples/s]
+Generating train split:   0%|          | 0/869 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 869/869 [00:00<00:00, 84064.08 examples/s]
+Generating test split:   0%|          | 0/540 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 540/540 [00:00<00:00, 76124.23 examples/s]
+Generating train split:   0%|          | 0/1205 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 1205/1205 [00:00<00:00, 36839.07 examples/s]
+Generating test split:   0%|          | 0/871 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 871/871 [00:00<00:00, 93490.60 examples/s]
+Generating train split:   0%|          | 0/746 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 746/746 [00:00<00:00, 55370.84 examples/s]
+Generating test split:   0%|          | 0/546 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 546/546 [00:00<00:00, 58676.62 examples/s]
+dataset ok: EleutherAI/hendrycks_math (7 subsets x train/test)

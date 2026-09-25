@@ -1,0 +1,30 @@
+{
+  "run_id": "standard_20260924_100731",
+  "dataset": "math",
+  "teacher": "/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B",
+  "proxy_student": "/scratch/aliasgarov/distillation-game/models/Qwen2.5-3B",
+  "student": "/scratch/aliasgarov/distillation-game/models/Llama-3.2-3B",
+  "seed": 789,
+  "split_sizes": {
+    "train": 5000,
+    "holdout": 2500,
+    "test": 5000
+  },
+  "planned_methods": {
+    "teachers": {
+      "standard": true,
+      "antidistillation_lams": [],
+      "poe_gammas": [],
+      "strategic_beta_teachers": []
+    },
+    "students": {
+      "modes": [
+        "naive",
+        "strategic_fd"
+      ],
+      "beta_s_values": [
+        0.5
+      ]
+    }
+  }
+}

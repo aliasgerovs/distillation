@@ -1,0 +1,32 @@
+{
+  "run_id": "smoke_math_20260923_151822",
+  "dataset": "math",
+  "teacher": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+  "proxy_student": "Qwen/Qwen2.5-3B",
+  "student": "replication/models/Llama-3.2-3B",
+  "seed": 456,
+  "split_sizes": {
+    "train": 64,
+    "holdout": 12,
+    "test": 64
+  },
+  "planned_methods": {
+    "teachers": {
+      "standard": true,
+      "antidistillation_lams": [],
+      "poe_gammas": [
+        0.75
+      ],
+      "strategic_beta_teachers": []
+    },
+    "students": {
+      "modes": [
+        "naive",
+        "strategic_fd"
+      ],
+      "beta_s_values": [
+        0.5
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 16:01:31 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'counting_and_probability' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/counting_and_probability/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:04 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'geometry' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/geometry/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:05 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'intermediate_algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/intermediate_algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:06 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'number_theory' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/number_theory/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:07 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'prealgebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/prealgebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:08 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'precalculus' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/precalculus/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:09 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 16:01:31 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'counting_and_probability' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/counting_and_probability/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:04 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'geometry' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/geometry/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:05 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'intermediate_algebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/intermediate_algebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:06 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'number_theory' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/number_theory/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:07 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'prealgebra' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/prealgebra/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:08 2026).
+Using the latest cached version of the dataset since EleutherAI/hendrycks_math couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'precalculus' at /home/grads/aliasgarov/.cache/huggingface/datasets/EleutherAI___hendrycks_math/precalculus/0.0.0/21a5633873b6a120296cce3e2df9d5550074f4a3 (last modified on Wed Sep 23 14:59:09 2026).
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 69.82it/s]
+math: batch=64, padded prompt length=512
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 55.91it/s]
+PoE teacher (gamma=0.75), 1 batch: peak allocated 32.3 GiB | peak reserved 32.7 GiB
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 92.02it/s]
+student eval (LoRA, untrained), 1 batch, padded prompt length=512: peak allocated 18.2 GiB | peak reserved 18.9 GiB

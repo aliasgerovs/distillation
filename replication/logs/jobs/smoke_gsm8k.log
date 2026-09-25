@@ -1,0 +1,106 @@
+[15:18:22] Run initialized | 
+output=outputs/replication/smoke/smoke_gsm8k_20260923_151822 | seed=123
+[15:18:22] Loading GSM8K splits...
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/grads/aliasgarov/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Wed Sep 23 15:10:43 2026).
+Using the latest cached version of the dataset since madrylab/gsm8k-platinum couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/grads/aliasgarov/.cache/huggingface/datasets/madrylab___gsm8k-platinum/main/0.0.0/e762492455a1cf7967de89f05b6bef72fc713b66 (last modified on Wed Sep 23 14:59:02 2026).
+[15:18:22] Loading GSM8K splits done in 0.1s | train=128, holdout=24, test=128
+[15:18:22] Saved prompt dictionary
+[15:18:22] Loading teacher model on cuda...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[15:24:59] Run initialized | 
+output=outputs/replication/smoke/smoke_gsm8k_20260923_152459 | seed=123
+[15:24:59] Loading GSM8K splits...
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/grads/aliasgarov/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Wed Sep 23 15:18:22 2026).
+Using the latest cached version of the dataset since madrylab/gsm8k-platinum couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/grads/aliasgarov/.cache/huggingface/datasets/madrylab___gsm8k-platinum/main/0.0.0/e762492455a1cf7967de89f05b6bef72fc713b66 (last modified on Wed Sep 23 14:59:02 2026).
+[15:25:00] Loading GSM8K splits done in 0.1s | train=128, holdout=24, test=128
+[15:25:00] Saved prompt dictionary
+[15:25:00] Loading teacher model on cuda...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[15:25:02] Loading teacher model done in 2.4s | 
+/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B
+[15:25:02] Teacher generation | method=standard | split=holdout...
+[15:26:05] Teacher generation | method=standard | split=holdout done in 1m 2s | 
+n=24, accuracy=0.9583
+[15:26:05] Teacher generation | method=standard | split=train...
+[15:28:32] Teacher generation | method=standard | split=train done in 2m 26s | 
+n=128, accuracy=0.8984
+[15:28:32] Teacher generation | method=standard | split=test...
+[15:31:00] Teacher generation | method=standard | split=test done in 2m 28s | 
+n=128, accuracy=0.8672
+[15:31:00] Teacher generation | method=poe | gamma=0.65 | split=train...
+[15:34:40] Teacher generation | method=poe | gamma=0.65 | split=train done in 3m
+40s | n=128, accuracy=0.8594
+[15:34:40] Teacher generation | method=poe | gamma=0.65 | split=test...
+[15:38:22] Teacher generation | method=poe | gamma=0.65 | split=test done in 3m 
+42s | n=128, accuracy=0.7969
+[15:38:23] Student training | source=teacher_standard | mode=naive | 
+beta_s=1.0...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'train_runtime': 56.7613, 'train_samples_per_second': 2.255, 'train_steps_per_second': 0.106, 'train_loss': 3.0220251083374023, 'entropy': 3.4707448699257593, 'num_tokens': 140648.0, 'mean_token_accuracy': 0.543076098642566, 'epoch': 1.0}
+[15:39:23] Student training | source=teacher_standard | mode=naive | beta_s=1.0 
+done in 1m 0s
+[15:39:23] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
+split=test...
+[15:43:04] Student eval | source=teacher_standard | mode=naive | beta_s=1.0 | 
+split=test done in 3m 40s | n=128, accuracy=0.1250
+[15:43:04] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5...
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+{'train_runtime': 56.6247, 'train_samples_per_second': 2.26, 'train_steps_per_second': 0.106, 'train_loss': 13.7673708597819, 'epoch': 1.0}
+[15:45:01] Student training | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 done in 1m 56s | mean_a=-0.3021, frac_mass_top20=0.2256
+[15:45:01] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test...
+[15:48:41] Student eval | source=teacher_standard | mode=strategic_fd | 
+beta_s=0.5 | split=test done in 3m 40s | n=128, accuracy=0.1016
+[15:48:41] Student training | source=teacher_poe_gamma_0.65 | mode=naive | 
+beta_s=1.0...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'train_runtime': 48.1726, 'train_samples_per_second': 2.657, 'train_steps_per_second': 0.125, 'train_loss': 2.559889634450277, 'entropy': 3.498676137490706, 'num_tokens': 118716.0, 'mean_token_accuracy': 0.6289544620297172, 'epoch': 1.0}
+[15:49:33] Student training | source=teacher_poe_gamma_0.65 | mode=naive | 
+beta_s=1.0 done in 51.7s
+[15:49:33] Student eval | source=teacher_poe_gamma_0.65 | mode=naive | 
+beta_s=1.0 | split=test...
+[15:53:12] Student eval | source=teacher_poe_gamma_0.65 | mode=naive | 
+beta_s=1.0 | split=test done in 3m 38s | n=128, accuracy=0.1953
+[15:53:12] Student training | source=teacher_poe_gamma_0.65 | mode=strategic_fd 
+| beta_s=0.5...
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+{'train_runtime': 48.1305, 'train_samples_per_second': 2.659, 'train_steps_per_second': 0.125, 'train_loss': 12.533276875813803, 'epoch': 1.0}
+[15:54:56] Student training | source=teacher_poe_gamma_0.65 | mode=strategic_fd 
+| beta_s=0.5 done in 1m 43s | mean_a=-0.3838, frac_mass_top20=0.2266
+[15:54:56] Student eval | source=teacher_poe_gamma_0.65 | mode=strategic_fd | 
+beta_s=0.5 | split=test...
+[15:58:35] Student eval | source=teacher_poe_gamma_0.65 | mode=strategic_fd | 
+beta_s=0.5 | split=test done in 3m 38s | n=128, accuracy=0.1094
+[15:58:35] Writing final results...
+[15:58:35] Writing final results done in 0.0s | rows=8
+Finished clean pipeline run at 
+outputs/replication/smoke/smoke_gsm8k_20260923_152459
+# Results
+
+## Comparison Matrix
+
+| Teacher | Teacher Accuracy | student_naive | student_strategic_fd (beta_s=0.5)
+|
+| --- | --- | --- | --- |
+| teacher_poe_gamma_0.65 | 0.7969 | 0.1953 | 0.1094<br><sub>mean_a=-0.3838, 
+frac_mass_top20=0.2266</sub> |
+| teacher_standard | 0.8672 | 0.1250 | 0.1016<br><sub>mean_a=-0.3021, 
+frac_mass_top20=0.2256</sub> |
+
+Model Context:
+- Dataset: `gsm8k`
+- Teacher model: 
+`/scratch/aliasgarov/distillation-game/models/DeepSeek-R1-Distill-Qwen-7B`
+- Student model: `/scratch/aliasgarov/distillation-game/models/Llama-3.2-3B`
+

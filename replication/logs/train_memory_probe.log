@@ -1,0 +1,19 @@
+longest training texts (tokens, before chat markup): [2316, 2067, 1938, 1910, 1883, 1880, 1866, 1859, 1856, 1844, 1796, 1760]
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 91.78it/s]
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Adding EOS to train dataset:   0%|          | 0/12 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 12/12 [00:00<00:00, 5623.65 examples/s]
+Tokenizing train dataset:   0%|          | 0/12 [00:00<?, ? examples/s]Tokenizing train dataset: 100%|██████████| 12/12 [00:00<00:00, 440.72 examples/s]
+Truncating train dataset:   0%|          | 0/12 [00:00<?, ? examples/s]Truncating train dataset: 100%|██████████| 12/12 [00:00<00:00, 8275.51 examples/s]
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+{'train_runtime': 9.7575, 'train_samples_per_second': 1.23, 'train_steps_per_second': 0.102, 'train_loss': 8.483142852783203, 'epoch': 1.0}
+strategic_fd: peak allocated 39.6 GiB | peak reserved 40.1 GiB | stats {'mean_a': -0.004069010416666667, 'std_a': 0.13291408667855695, 'frac_mass_top20': 0.18459133056718344}
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 86.92it/s]
+Adding EOS to train dataset:   0%|          | 0/12 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 12/12 [00:00<00:00, 6011.90 examples/s]
+Tokenizing train dataset:   0%|          | 0/12 [00:00<?, ? examples/s]Tokenizing train dataset: 100%|██████████| 12/12 [00:00<00:00, 401.44 examples/s]
+Truncating train dataset:   0%|          | 0/12 [00:00<?, ? examples/s]Truncating train dataset: 100%|██████████| 12/12 [00:00<00:00, 9675.44 examples/s]
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 128001}.
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'train_runtime': 9.7999, 'train_samples_per_second': 1.225, 'train_steps_per_second': 0.102, 'train_loss': 4.349054336547852, 'entropy': 3.335909366607666, 'num_tokens': 24576.0, 'mean_token_accuracy': 0.33807217329740524, 'epoch': 1.0}
+naive: peak allocated 27.2 GiB | peak reserved 33.1 GiB | stats {}

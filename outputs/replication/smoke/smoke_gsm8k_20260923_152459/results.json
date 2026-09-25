@@ -1,0 +1,54 @@
+[
+  {
+    "train_source": "-",
+    "eval_model": "teacher_standard_train",
+    "accuracy": 0.8984375,
+    "notes": "train",
+    "gen_seconds": 146.8
+  },
+  {
+    "train_source": "-",
+    "eval_model": "teacher_standard_test",
+    "accuracy": 0.8671875,
+    "notes": "test",
+    "gen_seconds": 148.4
+  },
+  {
+    "train_source": "-",
+    "eval_model": "teacher_poe_gamma_0.65_train",
+    "accuracy": 0.859375,
+    "notes": "train",
+    "gen_seconds": 220.1
+  },
+  {
+    "train_source": "-",
+    "eval_model": "teacher_poe_gamma_0.65_test",
+    "accuracy": 0.796875,
+    "notes": "test",
+    "gen_seconds": 222.1
+  },
+  {
+    "train_source": "teacher_standard",
+    "eval_model": "student_naive",
+    "accuracy": 0.125,
+    "notes": ""
+  },
+  {
+    "train_source": "teacher_standard",
+    "eval_model": "student_strategic_fd",
+    "accuracy": 0.1015625,
+    "notes": "beta_s=0.5, mean_a=-0.3021, frac_mass_top20=0.2256"
+  },
+  {
+    "train_source": "teacher_poe_gamma_0.65",
+    "eval_model": "student_naive",
+    "accuracy": 0.1953125,
+    "notes": ""
+  },
+  {
+    "train_source": "teacher_poe_gamma_0.65",
+    "eval_model": "student_strategic_fd",
+    "accuracy": 0.109375,
+    "notes": "beta_s=0.5, mean_a=-0.3838, frac_mass_top20=0.2266"
+  }
+]

@@ -34,7 +34,7 @@ def rendered_prompt(problem: str) -> str:
 
 split = load_dataset_splits("math", seed=456, train_size=5000, holdout_size=2500, test_size=5000)["train"]
 for fname in sys.argv[1:] or ["train_standard.json", "train_poe_gamma_0.75.json"]:
-    rows = load_authors_json(f"math_output_small/{fname}")
+    rows = load_authors_json(fname)
     agree_af = agree_raw = 0
     flips = []
     for row, ex in zip(rows, split):

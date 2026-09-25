@@ -5,7 +5,16 @@ dist/
 build/
 *.egg-info/
 
-outputs/
+# Run outputs: commit each run's small files (results, configs, manifests, sample traces);
+# the bulk trace JSONs (~100 MB per run) stay local.
+outputs/**
+!outputs/**/
+!outputs/**/results.json
+!outputs/**/RESULTS.md
+!outputs/**/config_snapshot.yaml
+!outputs/**/run_manifest.json
+!outputs/**/*.md
+!outputs/**/inspection/*.json
 artifacts/
 
 *.pyc
@@ -13,13 +22,8 @@ artifacts/
 *.DS_Store
 scripts/student_attr_ablation_local.py
 
-# Replication: local-only files
+# Replication: local-only files (paper PDF, queue runtime state, model-weight symlinks)
 paper/
 replication/state/
-replication/logs/*
-!replication/logs/queue.log
-!replication/logs/jobs/
-replication/logs/jobs/*
-!replication/logs/jobs/*.check.txt
 replication/models/**/*.safetensors
 replication/models/**/model.safetensors.index.json
