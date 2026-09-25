@@ -1,4 +1,62 @@
 {
+  "gsm8k/standard": {
+    "per_seed": {
+      "456": {
+        "teacher": 86.76592224979322,
+        "passive": 58.229942100909845,
+        "adaptive": 58.47808105872622,
+        "gen_seconds": 7738.6,
+        "run": "outputs/replication/gsm8k/seed456/standard_20260924_120451"
+      }
+    },
+    "aggregate": {
+      "teacher": [
+        86.76592224979322,
+        NaN
+      ],
+      "passive": [
+        58.229942100909845,
+        NaN
+      ],
+      "adaptive": [
+        58.47808105872622,
+        NaN
+      ]
+    },
+    "rel_gain": 0.4261363636363562,
+    "time_cost_ratios": [
+      1.0
+    ]
+  },
+  "gsm8k/poe": {
+    "per_seed": {
+      "456": {
+        "teacher": 81.47229114971051,
+        "passive": 49.13151364764268,
+        "adaptive": 52.357320099255574,
+        "gen_seconds": 11513.8,
+        "run": "outputs/replication/gsm8k/seed456/poe_20260924_120544"
+      }
+    },
+    "aggregate": {
+      "teacher": [
+        81.47229114971051,
+        NaN
+      ],
+      "passive": [
+        49.13151364764268,
+        NaN
+      ],
+      "adaptive": [
+        52.357320099255574,
+        NaN
+      ]
+    },
+    "rel_gain": 6.565656565656553,
+    "time_cost_ratios": [
+      1.4878401778099397
+    ]
+  },
   "math/standard": {
     "per_seed": {
       "123": {

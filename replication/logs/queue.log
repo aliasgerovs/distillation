@@ -36,3 +36,7 @@
 [2026-09-24 12:05:33] STARTED gsm8k_s456_poe on GPU 3 (pid 3103494)
 [2026-09-24 12:05:43] math_s456_poe re-checked by hand: PASS. The 3 flagged PoE traces echo the system prompt (model output, different formatting, no problem text); check now requires the exact prompt followed by the problem.
 [2026-09-24 12:06:03] math_s123_poe re-checked by hand: PASS (same PoE prompt-echo false positive; queue ran the old check).
+[2026-09-24 20:45:44] PASSED gsm8k_s456_poe: gpu=3 exit=0 hours=8.66 peak_mib=42079 check=PASS
+[2026-09-24 20:46:44] STARTED gsm8k_s123_standard on GPU 3 (pid 3212067)
+[2026-09-24 20:47:47] PASSED gsm8k_s456_standard: gpu=1 exit=0 hours=8.74 peak_mib=37769 check=PASS
+[2026-09-24 20:48:47] STARTED gsm8k_s123_poe on GPU 1 (pid 3212577)
